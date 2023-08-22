@@ -1,42 +1,44 @@
-#include "simple_shell.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "simple.h"
 
-/**
- * main - gets user input and calls
- * function(s) to perform commmand
- * @ac: argument count
- * @av: argument vector (array)
- * Return: 0. 
- */
-
-int main(int ac, char **av)
-
+int main(int argc, char **argv, char **env)
 {
-	char *line;
-	char **args;
-	int status;
-	bool running = true;
+   char *line = NULL; 
+   int status;
+   bool running = true;
 
-	(void)ac;
-	(void)av;
 
-	while (running)
-	{
-		prompt();
-		line = read_input();
+   (void)argc;
+   (void)argv;
 
-		if (line == NULL)
-			break;
 
-		args = tokenize(line);
-		status = execute(args);
-		free(line);
-		free_array(args);
+   while (running)
+   {
+       printf("$ ");
+       line = read_input();
 
-		if (status == -1)
-		{
-			running = false;
-		}
-	}
-	return (0);
+       if (line == NULL)
+       {
+           break;
+       }
 
+
+       if (strcmp(line, "exit\n") == 0)
+       {
+           running = false;
+       }
+       else
+       {
+           status = execute_command(line, *env);
+       }
+
+       if (status == -1)
+       {
+           running = false;
+       }
+   }
+   free(line);
+   return 0;
 }
