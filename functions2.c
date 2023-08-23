@@ -2,6 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include "simple.h"
+/**
+ * execute_command - execute a command
+ * @command: command to be executed
+ * 
+ * Return: status
+*/
 
 int execute_command(char *command)
 {
@@ -14,13 +20,6 @@ int execute_command(char *command)
         status = execute(args);
         free(args);
         free(line);
-
     }
-    
-    return status;
-}
-
-void free_array(char **args)
-{
-    free(args);
+    return (status);
 }
