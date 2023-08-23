@@ -3,12 +3,11 @@
 #include <string.h>
 #include "simple.h"
 
-int execute_command(char *command, char *environment)
+int execute_command(char *command)
 {
     int status = -1;
     char *line = strdup(command);
     char **args = tokenize(line);
-    (void)environment;
 
     if (args[0] != NULL)
     {

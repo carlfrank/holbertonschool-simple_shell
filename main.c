@@ -3,16 +3,28 @@
 #include <string.h>
 #include "simple.h"
 
-int main(int argc, char **argv, char **env)
+int main(int argc, char **argv)
+{
+   (void)argc;
+   (void)argv;
+
+    if (isatty(0))
+    {
+        interactive_loop();
+    }
+    else
+    {
+        noninteractive();
+    }
+
+   return 0;
+}
+
+void interactive_loop(void)
 {
    char *line = NULL; 
    int status;
    bool running = true;
-
-
-   (void)argc;
-   (void)argv;
-
 
    while (running)
    {
@@ -31,7 +43,7 @@ int main(int argc, char **argv, char **env)
        }
        else
        {
-           status = execute_command(line, *env);
+           status = execute_command(line);
        }
 
        if (status == -1)
@@ -40,5 +52,21 @@ int main(int argc, char **argv, char **env)
        }
    }
    free(line);
-   return 0;
+}
+
+void noninteractive(void)
+{
+    char *line = NULL; 
+    line = read_input();
+
+    if (line == NULL)
+    {}
+
+    if (strcmp(line, "exit\n") == 0)
+    {}
+    else
+    {
+        execute_command(line);
+    }
+    free(line);
 }

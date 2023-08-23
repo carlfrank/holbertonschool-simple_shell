@@ -10,7 +10,7 @@
 #define MAX_LINE_LENGTH 1024
 #define MAX_ARGS 64
 
-char *read_input()
+char *read_input(void)
 {
     char *line = NULL;
     size_t bufsize = 0;
@@ -33,7 +33,6 @@ char **tokenize(char *line)
         tokens[token_count] = NULL;
     }
 
-    free(tokens);
     return tokens;
 }
 
