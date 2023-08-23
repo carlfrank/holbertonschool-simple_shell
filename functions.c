@@ -19,50 +19,63 @@ char *read_input(void)
 {
 	char *line = NULL;
 	size_t bufsize = 0;
-    getline(&line, &bufsize, stdin);
+
+	getline(&line, &bufsize, stdin);
 	return (line);
 }
 
-void free_args(char **args) 
+/**
+ * free_args - free memory
+ * @args: arguments
+*/
+void free_args(char **args)
 {
-    int i;
+	int i;
 
-    for (i = 0; args[i] != NULL; i++)
+	for (i = 0; args[i] != NULL; i++)
 	{
-        free(args[i]);
-    }
-    free(args);
+		free(args[i]);
+	}
+	free(args);
 }
-char **tokenize(char *line) 
+
+/**
+ * tokenize - divide arguments
+ * @line: of arguments
+ * Return: tokens
+*/
+char **tokenize(char *line)
 {
-    char **tokens = NULL;
-    char *token = strtok(line, " \t\n");
-    int token_count = 0;
+	char **tokens = NULL;
+	char *token = strtok(line, " \t\n");
+	int token_count = 0;
 
-    while (token) {
-        tokens = realloc(tokens, sizeof(char *) * (token_count + 1));
-        if (tokens == NULL) {
-            perror("realloc error");
-            exit(EXIT_FAILURE);
-        }
-        tokens[token_count] = strdup(token);
-        if (tokens[token_count] == NULL) 
+	while (token)
+	{
+		tokens = realloc(tokens, sizeof(char *) * (token_count + 1));
+		if (tokens == NULL)
 		{
-            perror("strdup error");
-            exit(EXIT_FAILURE);
-        }
-        token_count++;
-        token = strtok(NULL, " \t\n");
-    }
-    tokens = realloc(tokens, sizeof(char *) * (token_count + 1));
-    if (tokens == NULL) {
-        perror("realloc error");
-        exit(EXIT_FAILURE);
-    }
-    tokens[token_count] = NULL;
+			perror("realloc error");
+			exit(EXIT_FAILURE);
+		}
+		tokens[token_count] = strdup(token);
+		if (tokens[token_count] == NULL)
+		{
+			perror("strdup error");
+			exit(EXIT_FAILURE);
+		}
+		token_count++;
+		token = strtok(NULL, " \t\n");
+	}
+	tokens = realloc(tokens, sizeof(char *) * (token_count + 1));
+	if (tokens == NULL)
+	{
+		perror("realloc error");
+		exit(EXIT_FAILURE);
+	}
+	tokens[token_count] = NULL;
 
-
-    return tokens;
+	return (tokens);
 }
 /**
  * execute - execute command line
@@ -83,9 +96,9 @@ int execute(char **args)
 			exit(EXIT_FAILURE);
 		}
 	}
-    else if (pid > 0)   
-    {
-	    int status;
+	else if (pid > 0)
+	{
+		int status;
 
 		waitpid(pid, &status, 0);
 		return (WIFEXITED(status) ? WEXITSTATUS(status) : -1);
