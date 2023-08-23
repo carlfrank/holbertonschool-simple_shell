@@ -1,72 +1,77 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <string.h>
 #include "simple.h"
-
+/**
+ * main - main functin
+ * @argc: number of arguments
+ * @argv: line of arguments
+ * Return: 0
+ */
 int main(int argc, char **argv)
 {
-   (void)argc;
-   (void)argv;
+	(void)argc;
+	(void)argv;
 
-    if (isatty(0))
-    {
-        interactive_loop();
-    }
-    else
-    {
-        noninteractive();
-    }
+	if (isatty(0))
+	{
+		interactive_loop();
+	}
+	else
+	{
+		noninteractive();
+	}
 
-   return 0;
+	return (0);
 }
 
-void interactive_loop(void)
-{
-   char *line = NULL; 
-   int status;
-   bool running = true;
+void interactive_loop(void) {
+    char *line = NULL;
+    int status;
+    bool running = true;
 
-   while (running)
-   {
-       printf("$ ");
-       line = read_input();
+    while (running) {
+        printf("$ ");
+        line = read_input();
 
-       if (line == NULL)
-       {
-           break;
-       }
+        if (line == NULL) {
+            break;
+        }
 
+        if (strcmp(line, "exit\n") == 0) {
+            running = false;
+        } else {
+            status = execute_command(line);
+        }
 
-       if (strcmp(line, "exit\n") == 0)
-       {
-           running = false;
-       }
-       else
-       {
-           status = execute_command(line);
-       }
+        if (status == -1) {
+            running = false;
+        }
 
-       if (status == -1)
-       {
-           running = false;
-       }
-   }
-   free(line);
+        free(line);
+    }
 }
 
+
+/**
+ * noninteractive - non interactive mode
+ */
 void noninteractive(void)
 {
-    char *line = NULL; 
-    line = read_input();
+	char *line = NULL;
 
-    if (line == NULL)
-    {}
+	line = read_input();
 
-    if (strcmp(line, "exit\n") == 0)
-    {}
-    else
-    {
-        execute_command(line);
-    }
-    free(line);
+	if (line == NULL)
+	{}
+
+	if (strcmp(line, "exit\n") == 0)
+	{}
+	else
+	{
+		execute_command(line);
+	}
+	free(line);
 }
+
