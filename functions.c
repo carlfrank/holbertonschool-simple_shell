@@ -39,7 +39,6 @@ char **tokenize(char *line)
     char *token = strtok(line, " \t\n");
     int token_count = 0;
 
-
     while (token) {
         tokens = realloc(tokens, sizeof(char *) * (token_count + 1));
         if (tokens == NULL) {
@@ -56,6 +55,7 @@ char **tokenize(char *line)
         token = strtok(NULL, " \t\n");
     }
 
+  
     tokens = realloc(tokens, sizeof(char *) * (token_count + 1));
     if (tokens == NULL) {
         perror("realloc error");
@@ -63,7 +63,7 @@ char **tokenize(char *line)
     }
     tokens[token_count] = NULL;
 
-	return tokens;
+    return tokens;
 }
 /**
  * execute - execute command line
