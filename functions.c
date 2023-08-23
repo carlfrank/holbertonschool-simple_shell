@@ -54,8 +54,6 @@ char **tokenize(char *line)
         token_count++;
         token = strtok(NULL, " \t\n");
     }
-
-  
     tokens = realloc(tokens, sizeof(char *) * (token_count + 1));
     if (tokens == NULL) {
         perror("realloc error");
