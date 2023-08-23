@@ -26,31 +26,41 @@ int main(int argc, char **argv)
 	return (0);
 }
 
-void interactive_loop(void) {
-    char *line = NULL;
-    int status;
-    bool running = true;
+/**
+ * interactive_loop - printint the $
+*/
+void interactive_loop(void)
+{
+	char *line = NULL;
+	int status;
+	bool running = true;
 
-    while (running) {
-        printf("$ ");
-        line = read_input();
+	while (running)
+	{
+		printf("$ ");
+		line = read_input();
 
-        if (line == NULL) {
-            break;
-        }
+		if (line == NULL)
+		{
+			break;
+		}
 
-        if (strcmp(line, "exit\n") == 0) {
-            running = false;
-        } else {
-            status = execute_command(line);
-        }
+		if (strcmp(line, "exit\n") == 0)
+		{
+			running = false;
+		}
+		else
+		{
+			status = execute_command(line);
+		}
 
-        if (status == -1) {
-            running = false;
-        }
+		if (status == -1)
+		{
+			running = false;
+		}
 
-        free(line);
-    }
+		free(line);
+	}
 }
 
 
