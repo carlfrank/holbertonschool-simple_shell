@@ -22,7 +22,9 @@ char *read_input(void)
     getline(&line, &bufsize, stdin);
 	return (line);
 }
-void free_args(char **args) {
+
+void free_args(char **args) 
+{
     int i;
 
     for (i = 0; args[i] != NULL; i++)
@@ -36,7 +38,7 @@ char **tokenize(char *line)
     char **tokens = NULL;
     char *token = strtok(line, " \t\n");
     int token_count = 0;
-    int i; 
+
 
     while (token) {
         tokens = realloc(tokens, sizeof(char *) * (token_count + 1));
@@ -61,11 +63,7 @@ char **tokenize(char *line)
     }
     tokens[token_count] = NULL;
 
-    for (i = 0; i < token_count; i++) {
-        free(tokens[i]);
-    }
-
-    return tokens;
+	return tokens;
 }
 /**
  * execute - execute command line
@@ -73,6 +71,7 @@ char **tokenize(char *line)
  *
  * Return: 0
  */
+
 int execute(char **args)
 {
 	pid_t pid = fork();

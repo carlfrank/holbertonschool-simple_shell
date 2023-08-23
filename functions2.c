@@ -10,7 +10,7 @@
 */
 
 int execute_command(char *command)
-{
+{   
     int status = -1;
     char *line = strdup(command);
     char **args = tokenize(line);
@@ -18,8 +18,8 @@ int execute_command(char *command)
     if (args[0] != NULL)
     {
         status = execute(args);
-        free(args);
-        free(line);
+        free_args(args);       
     }
-    return (status);
+    free(line);       
+    return status;
 }
