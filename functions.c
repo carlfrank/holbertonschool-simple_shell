@@ -21,6 +21,7 @@ char *read_input(void)
 	size_t bufsize = 0;
 
 	getline(&line, &bufsize, stdin);
+	free(line);
 	return (line);
 }
 
