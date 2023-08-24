@@ -20,10 +20,6 @@ char *read_input(void)
 	char *line = NULL;
 	size_t bufsize = 0;
 
-if (getline(&line, &bufsize, stdin) == EOF)
-exit(EXIT_SUCCESS);
-
-else
 	getline(&line, &bufsize, stdin);
 	return (line);
 }
