@@ -3,6 +3,28 @@
 Simple Shell
 .SH SYNOPSIS
 .B #include\ "simple_shell.h"
+.P
+.B Interactive mode:
+.P
+$ ./hsh
+.TP
+($) /bin/ls
+.TP
+hsh main.c shell.c
+.TP
+($)
+.TP
+($) exit
+.TP
+$
+.TP
+.B Non-interactive mode:
+.P
+$ echo "/bin/ls" | ./hsh
+.TP
+hsh main.c shell.c test_ls_2
+.TP
+$
 .SH COMPILE
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 .SH DESCRIPTION
