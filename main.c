@@ -78,6 +78,7 @@ void noninteractive(void)
 
 	if (strcmp(line, "exit\n") == 0)
 	{}
+
 	else
 	{
 		execute_command(line);
