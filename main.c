@@ -85,4 +85,3 @@ void noninteractive(void)
 	}
 	free(line);
 }
-
