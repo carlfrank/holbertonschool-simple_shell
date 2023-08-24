@@ -67,21 +67,74 @@ void interactive_loop(void)
 /**
  * noninteractive - non interactive mode
  */
+
 void noninteractive(void)
 {
-	char *line = NULL;
+    char *line = NULL;
 
-	line = read_input();
+    while ((line = read_input()) != NULL)
+    {
+        char *trimmed_line = whitespace_trimer(line);
 
-	if (line == NULL)
-	{}
+        if (strcmp(trimmed_line, "exit") == 0)
+        {
+            free(trimmed_line);
+            free(line);
+            break;
+        }
+        else if (trimmed_line[0] != '\0')
+        {
+            execute_command(trimmed_line);
+        }
 
-	if (strcmp(line, "exit\n") == 0)
-	{}
+        free(trimmed_line);
+        free(line);
+    }
+}
 
-	else
-	{
-		execute_command(line);
-	}
-	free(line);
+
+/**
+ * whitespace_trimer - remove leading and trailing whitespace from a string
+ * @str: input string
+ * Return: pointer to the trimmed string (caller must free it)
+ */
+
+char *whitespace_trimer(const char *str)
+{
+    size_t len;
+    size_t start, end, trimmed_len;
+    char *trimmed_str;
+
+    if (str == NULL)
+    {
+        return NULL;
+    }
+
+    len = strlen(str);
+    start = 0;
+    end = len - 1;
+
+    while (isspace(str[start]) && start < len)
+    {
+        start++;
+    }
+
+    while (isspace(str[end]) && end > start)
+    {
+        end--;
+    }
+
+    trimmed_len = end - start + 1;
+    trimmed_str = (char *)malloc(trimmed_len + 1);
+
+    if (trimmed_str == NULL)
+    {
+        perror("malloc error");
+        exit(EXIT_FAILURE);
+    }
+
+    strncpy(trimmed_str, str + start, trimmed_len);
+    trimmed_str[trimmed_len] = '\0';
+
+    return trimmed_str;
 }

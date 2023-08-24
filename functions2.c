@@ -11,15 +11,29 @@
 
 int execute_command(char *command)
 {
-	int status = -1;
-	char *line = strdup(command);
-	char **args = tokenize(line);
+    char *line = strdup(command);
+    char **args = tokenize(line);
 
-	if (args[0] != NULL)
-	{
-		status = execute(args);
-		free_args(args);
-	}
-	free(line);
-	return (status);
+    if (args[0] != NULL)
+    {
+        int status = execute(args);
+        int i; 
+
+     
+        for (i = 0; args[i] != NULL; i++)
+        {
+            free(args[i]);
+        }
+
+        free(args);
+        free(line);
+        return status;  
+    }
+    else
+    {
+        free(line);
+        return -1; 
+    }
 }
+
+
