@@ -36,39 +36,47 @@ int execute_command(char *command)
     }
 }
 
-/**
- * interactive_loop - printint the $
-*/
-void interactive_loop(void)
+char *whitespace_trimer(const char *str)
 {
-	char *line = NULL;
-	int status;
-	bool running = true;
+    size_t len;
+    size_t start, end, trimmed_len;
+    char *trimmed_str;
 
-	while (running)
-	{
-		printf("$ ");
-		line = read_input();
+    if (str == NULL)
+    {
+        return NULL;
+    }
 
-		if (line == NULL)
-		{
-			break;
-		}
+    len = strlen(str);
+    start = 0;
+    end = len - 1;
 
-		if (strcmp(line, "exit\n") == 0)
-		{
-			running = false;
-		}
-		else
-		{
-			status = execute_command(line);
-		}
+    while (isspace(str[start]) && start < len)
+    {
+        start++;
+    }
 
-		if (status == -1)
-		{
-			running = false;
-		}
+    while (isspace(str[end]) && end > start)
+    {
+        end--;
+    }
 
-		free(line);
-	}
+    trimmed_len = end - start + 1;
+    trimmed_str = (char *)malloc(trimmed_len + 1);
+
+    if (trimmed_str == NULL)
+    {
+        perror("malloc error");
+        exit(EXIT_FAILURE);
+    }
+
+    strncpy(trimmed_str, str + start, trimmed_len);
+    trimmed_str[trimmed_len] = '\0';
+
+    if (trimmed_len > 0 && trimmed_str[trimmed_len - 1] == '\n')
+    {
+        trimmed_str[trimmed_len - 1] = '\0';
+    }
+
+    return trimmed_str;
 }

@@ -26,47 +26,71 @@ int main(int argc, char **argv)
 	return (0);
 }
 
-char *whitespace_trimer(const char *str)
+void interactive_loop(void)
 {
-    size_t len;
-    size_t start, end, trimmed_len;
-    char *trimmed_str;
+	char *line = NULL;
+	int status;
+	bool running = true;
 
-    if (str == NULL)
-    {
-        return NULL;
-    }
+	while (running)
+	{
+		printf("$ ");
+		line = read_input();
 
-    len = strlen(str);
-    start = 0;
-    end = len - 1;
+		if (line == NULL)
+		{
+			break;
+		}
 
-    while (isspace(str[start]) && start < len)
-    {
-        start++;
-    }
+		if (strcmp(line, "exit\n") == 0)
+		{
+			running = false;
+		}
+		else
+		{
+			status = execute_command(line);
+		}
 
-    while (isspace(str[end]) && end > start)
-    {
-        end--;
-    }
+		if (status == -1)
+		{
+			running = false;
+		}
 
-    trimmed_len = end - start + 1;
-    trimmed_str = (char *)malloc(trimmed_len + 1);
+		free(line);
+	}
+}
 
-    if (trimmed_str == NULL)
-    {
-        perror("malloc error");
-        exit(EXIT_FAILURE);
-    }
+void noninteractive(void)
+{
+	char *line = NULL;
+	int running = 1;
 
-    strncpy(trimmed_str, str + start, trimmed_len);
-    trimmed_str[trimmed_len] = '\0';
+	while (running && (line = read_input()) != NULL)
+	{
+		char *trimmed_line = whitespace_trimer(line);
 
-    if (trimmed_len > 0 && trimmed_str[trimmed_len - 1] == '\n')
-    {
-        trimmed_str[trimmed_len - 1] = '\0';
-    }
+		if (strcmp(trimmed_line, "exit") == 0)
+		{
+			free(trimmed_line);
+			free(line);
+			running = 0;
+		}
+		else if (strlen(trimmed_line) > 0)
+		{
+			int status = execute_command(trimmed_line);
 
-    return trimmed_str;
+			if (status != 0)
+			{
+				free(trimmed_line);
+				free(line);
+				exit(EXIT_FAILURE);
+			}
+		}
+
+		free(trimmed_line);
+		free(line);
+	}
+
+	printf("No commands executed.\n");
+	exit(EXIT_SUCCESS);
 }
