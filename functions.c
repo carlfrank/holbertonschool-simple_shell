@@ -112,3 +112,48 @@ int execute(char **args)
 	}
 	return (0);
 }
+
+void noninteractive(void)
+{
+    char *line = NULL;
+    bool running = true;
+    bool commands_executed = false;
+
+    while (running && (line = read_input()) != NULL)
+    {
+        char *trimmed_line = whitespace_trimer(line);
+
+        if (strcmp(trimmed_line, "exit") == 0)
+        {
+            free(trimmed_line);
+            free(line);
+            running = false; 
+        }
+        else if (strlen(trimmed_line) > 0)
+        {
+            int status = execute_command(trimmed_line);
+            commands_executed = true;
+
+            if (status != 0)
+            {
+                free(trimmed_line);
+                free(line);
+                exit(EXIT_FAILURE);
+            }
+        }
+
+        free(trimmed_line);
+        free(line);
+    }
+
+    if (commands_executed)
+    {
+        printf("Commands executed.\n"); 
+    }
+    else
+    {
+        printf("No commands executed.\n");
+    }
+
+    exit(EXIT_SUCCESS); 
+}

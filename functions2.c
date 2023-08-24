@@ -36,4 +36,39 @@ int execute_command(char *command)
     }
 }
 
+/**
+ * interactive_loop - printint the $
+*/
+void interactive_loop(void)
+{
+	char *line = NULL;
+	int status;
+	bool running = true;
 
+	while (running)
+	{
+		printf("$ ");
+		line = read_input();
+
+		if (line == NULL)
+		{
+			break;
+		}
+
+		if (strcmp(line, "exit\n") == 0)
+		{
+			running = false;
+		}
+		else
+		{
+			status = execute_command(line);
+		}
+
+		if (status == -1)
+		{
+			running = false;
+		}
+
+		free(line);
+	}
+}

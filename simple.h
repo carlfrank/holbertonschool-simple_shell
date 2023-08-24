@@ -24,5 +24,4 @@ void interactive_loop(void);
 void noninteractive(void);
 void free_args(char **args);
 char *whitespace_trimer(const char *str);
-
 #endif
