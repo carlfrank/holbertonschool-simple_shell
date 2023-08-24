@@ -116,8 +116,7 @@ int execute(char **args)
 void noninteractive(void)
 {
     char *line = NULL;
-    bool running = true;
-    bool commands_executed = false;
+    int running = 1; 
 
     while (running && (line = read_input()) != NULL)
     {
@@ -127,12 +126,11 @@ void noninteractive(void)
         {
             free(trimmed_line);
             free(line);
-            running = false; 
+            running = 0; 
         }
         else if (strlen(trimmed_line) > 0)
         {
             int status = execute_command(trimmed_line);
-            commands_executed = true;
 
             if (status != 0)
             {
@@ -146,14 +144,6 @@ void noninteractive(void)
         free(line);
     }
 
-    if (commands_executed)
-    {
-        printf("Commands executed.\n"); 
-    }
-    else
-    {
-        printf("No commands executed.\n");
-    }
-
-    exit(EXIT_SUCCESS); 
+    printf("No commands executed.\n");
+    exit(EXIT_SUCCESS);
 }
