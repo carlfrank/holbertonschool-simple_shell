@@ -1,63 +1,78 @@
-Simple Shell Project 👾
+# Simple Shell Project 👾
 
 Welcome to the Simple Shell project! This shell is designed to provide basic command-line functionalities, allowing you to interact with your operating system. Whether you're executing commands, managing processes, or exploring your file system, this shell has got you covered.
-🚀 Features
 
-    Command Execution: Execute a wide range of commands available on your system.
-    Built-in Commands: Includes built-in commands like cd for directory navigation.
-    Input/Output Redirection: Redirect input and output for commands using '<' and '>'.
-    Piping Support: Chain multiple commands together using the '|' symbol.
-    Process Management: Run processes in the background using the '&' symbol.
-    Interactive and Non-Interactive Modes: Use the shell interactively or provide commands via non-interactive mode.
-    Signal Handling: Handles signals gracefully for better user experience.
+## 🚀 Features
 
-⚙️ Getting Started
+- **Command Execution**: Execute a wide range of commands available on your system.
+- **Built-in Commands**: Includes built-in commands like `cd` for directory navigation.
+- **Input/Output Redirection**: Redirect input and output for commands using '<' and '>'.
+- **Piping Support**: Chain multiple commands together using the '|' symbol.
+- **Process Management**: Run processes in the background using the '&' symbol.
+- **Interactive and Non-Interactive Modes**: Use the shell interactively or provide commands via non-interactive mode.
+- **Signal Handling**: Handles signals gracefully for better user experience.
 
-    Clone the Repository: Begin by cloning this repository to your local machine:
+## ⚙️ Getting Started
 
-    git clone https://github.com/your-username/simple-shell.git
+1. **Clone the Repository**: Begin by cloning this repository to your local machine:
 
-    Compile the Code: Navigate to the project directory and compile the shell source code:
+   ```
+   git clone https://github.com/your-username/simple-shell.git
+   ```
 
-    cd simple-shell
-    gcc -o shell *.c -lm
+2. **Compile the Code**: Navigate to the project directory and compile the shell source code:
 
-    Run the Shell: Start the shell and enjoy the command-line experience:
+   ```
+   cd simple-shell
+   gcc -o shell *.c -lm
+   ```
 
-    ./shell
+3. **Run the Shell**: Start the shell and enjoy the command-line experience:
 
-📚 Usage
+   ```
+   ./shell
+   ```
+
+## 📚 Usage
 
 Once you have the shell up and running, try out these commands:
 
-    Execute a command:
+- Execute a command:
+  ```
+  > ls -l
+  ```
 
-    > ls -l
+- Navigate directories:
+  ```
+  > cd /path/to/directory
+  ```
 
-    Navigate directories:
+- Redirect input from a file:
+  ```
+  > command < input.txt
+  ```
 
-    > cd /path/to/directory
+- Redirect output to a file:
+  ```
+  > command > output.txt
+  ```
 
-    Redirect input from a file:
+- Run a command in the background:
+  ```
+  > command &
+  ```
 
-    > command < input.txt
+- Exit the shell:
+  ```
+  > exit
+  ```
 
-    Redirect output to a file:
+## 🛠️ Contributors
 
-    > command > output.txt
+- Carlos Carrasquillo \<collectornifty@gmail.com\>
+- Miguel Figueroa \<miguel.figueroa0122@gmail.com\>
+- Nadja Miranda \<nadeshda02@hotmail.com\>
 
-    Run a command in the background:
 
-    > command &
-
-    Exit the shell:
-
-    > exit
-
-🛠️ Contributors
-
-    Carlos Carrasquillo <collectornifty@gmail.com>
-    Miguel Figueroa <miguel.figueroa0122@gmail.com>
-    Nadja Miranda <nadeshda02@hotmail.com>
-
-May the code be with you! 🌌👾 Happy coding! 🚀👨‍💻👩‍💻
+May the code be with you! 🌌👾
+Happy coding! 🚀👨‍💻👩‍💻
