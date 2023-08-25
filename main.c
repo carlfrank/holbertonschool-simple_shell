@@ -26,9 +26,6 @@ int main(int argc, char **argv)
 	return (0);
 }
 
-/**
- * interactive_loop - printint the $
-*/
 void interactive_loop(void)
 {
 	char *line = NULL;
@@ -63,25 +60,37 @@ void interactive_loop(void)
 	}
 }
 
-
-/**
- * noninteractive - non interactive mode
- */
 void noninteractive(void)
 {
 	char *line = NULL;
+	int running = 1;
 
-	line = read_input();
-
-	if (line == NULL)
-	{}
-
-	if (strcmp(line, "exit\n") == 0)
-	{}
-
-	else
+	while (running && (line = read_input()) != NULL)
 	{
-		execute_command(line);
+		char *trimmed_line = whitespace_trimer(line);
+
+		if (strcmp(trimmed_line, "exit") == 0)
+		{
+			free(trimmed_line);
+			free(line);
+			running = 0;
+		}
+		else if (strlen(trimmed_line) > 0)
+		{
+			int status = execute_command(trimmed_line);
+
+			if (status != 0)
+			{
+				free(trimmed_line);
+				free(line);
+				exit(EXIT_FAILURE);
+			}
+		}
+
+		free(trimmed_line);
+		free(line);
 	}
-	free(line);
+
+	printf("No commands executed.\n");
+	exit(EXIT_SUCCESS);
 }
