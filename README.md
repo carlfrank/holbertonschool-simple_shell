@@ -71,7 +71,9 @@ Once you have the shell up and running, try out these commands:
 
 
  -Carlos Carrasquillo <collectornifty@gmail.com>
+
  -Miguel Figueroa <miguel.figueroa0122@gmail.com>
+
  -Nadja Miranda <nadeshda02@hotmail.com> <https://github.com/nadeshda18> <https://www.linkedin.com/in/nadja-miranda-schnuppe/>
 
 
