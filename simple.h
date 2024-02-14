@@ -13,14 +13,15 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <stdbool.h>
+#include <ctype.h>
 
 char **tokenize(char *line);
 int execute_command(char *command);
-void free_array(char **args);
 int execute(char **args);
 char *read_input();
 void handle_non_interactive_mode(char *environment);
 void interactive_loop(void);
 void noninteractive(void);
-
+void free_args(char **args);
+char *whitespace_trimer(const char *str);
 #endif
