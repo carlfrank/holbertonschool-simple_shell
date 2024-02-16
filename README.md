@@ -70,11 +70,11 @@ Once you have the shell up and running, try out these commands:
 ## 🛠️ Contributors
 
 
- -Carlos Carrasquillo <collectornifty@gmail.com>
+ -Carlos Carrasquillo [Email](collectornifty@gmail.com) [Github](https://github.com/carlfrank) [Linkedin] (https://www.linkedin.com/in/carlos-carrasquillo-developer/)
 
- -Miguel Figueroa <miguel.figueroa0122@gmail.com>
+ -Miguel Figueroa [Email](miguel.figueroa0122@gmail.com) [GitHub](https://github.com/figue0122) [Linkedin](https://www.linkedin.com/in/miguel-figueroapr/)
 
- -Nadja Miranda <nadeshda02@hotmail.com> <https://github.com/nadeshda18> <https://www.linkedin.com/in/nadja-miranda-schnuppe/>
+ -Nadja Miranda [Email](nadeshda02@hotmail.com) [GitHub](https://github.com/nadeshda18)  [Linkedin](https://www.linkedin.com/in/nadja-miranda-schnuppe/)
 
 
 May the code be with you! 🌌👾
