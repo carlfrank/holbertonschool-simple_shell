@@ -70,7 +70,7 @@ Once you have the shell up and running, try out these commands:
 ## 🛠️ Contributors
 
 
- -Carlos Carrasquillo [Email](collectornifty@gmail.com) [Github](https://github.com/carlfrank) [Linkedin] (https://www.linkedin.com/in/carlos-carrasquillo-developer/)
+ -Carlos Carrasquillo [Email](collectornifty@gmail.com) [Github](https://github.com/carlfrank) [Linkedin](https://www.linkedin.com/in/carlos-carrasquillo-developer/)
 
  -Miguel Figueroa [Email](miguel.figueroa0122@gmail.com) [GitHub](https://github.com/figue0122) [Linkedin](https://www.linkedin.com/in/miguel-figueroapr/)
 
